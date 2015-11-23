@@ -72,17 +72,23 @@
     four.title                   = @"four";
     [self addChildViewController:four];
 }
+
 /**
  *  2.设置导航
  */
 - (void)setupNav
 {
-    //设置导航栏标题
-    self.navigationItem.title = @"父子控制器进阶版";
-    //背景颜色
-//    self.view.backgroundColor = [UIColor whiteColor];
+    UILabel *titleText = [[UILabel alloc] initWithFrame:CGRectMake(160, 0, 120, 40)];
     
+    // NavigationBar 背景颜色
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:20/255.0 green:155/255.0 blue:150/255.0 alpha:1.0]];
+    titleText.textColor = [UIColor whiteColor];
+    [titleText setFont:[UIFont systemFontOfSize:17.0]];
+    [titleText setText:@"父子控制器进阶版"];
+    //设置导航栏标题
+    self.navigationItem.titleView = titleText;
 }
+
 /**
  *  3.添加scrollView
  */
@@ -95,6 +101,8 @@
     [self.view addSubview:scrollView];
     self.scrollView = scrollView;
     
+    //禁止掉 自动设置scrollView的内边距
+    self.automaticallyAdjustsScrollViewInsets = NO;
     //设置内容大小
     scrollView.contentSize = CGSizeMake(self.childViewControllers.count * scrollView.width, 0);
     
@@ -103,7 +111,6 @@
 /**
  *  4.添加标题栏
  */
-
 - (void)setupTitlesView
 {
     UIView *titlesView = [[UIView alloc] init];
